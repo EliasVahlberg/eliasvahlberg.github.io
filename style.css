@@ -1,0 +1,208 @@
+:root {
+  --bg:        #0d0d0d;
+  --bg-card:   #111111;
+  --border:    #222222;
+  --text:      #c8c8c8;
+  --text-dim:  #666666;
+  --accent:    #e07b39;
+  --green:     #5a9e6f;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --max-width: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ── Header ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+nav { display: flex; gap: 1.5rem; }
+nav a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+nav a:hover { color: var(--accent); text-decoration: none; }
+
+/* ── Main layout ── */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+/* ── About ── */
+#about {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#about p + p { margin-top: 1rem; }
+
+/* ── Section labels ── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--green);
+  letter-spacing: 0.06em;
+  margin: 3rem 0 1.5rem;
+}
+
+/* ── Projects ── */
+#projects { padding-bottom: 1rem; }
+
+.project {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project:last-child { border-bottom: none; }
+
+.project h3 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e8e8e8;
+  margin-bottom: 0.25rem;
+}
+
+.project-tagline {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.project p + p { margin-top: 0.85rem; }
+
+.project strong { color: #e8e8e8; }
+
+.project-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 1rem !important;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.project-links a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+/* ── Inline code blocks ── */
+pre.inline-code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #d4d4d4;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.6;
+}
+
+/* ── Publications ── */
+#writing { padding-top: 1rem; }
+
+.pub-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.pub-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.pub-list li em { color: var(--text); font-style: italic; }
+
+.pub-list li a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.pub-note {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+footer a { color: var(--text-dim); }
+footer a:hover { color: var(--accent); text-decoration: none; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  main { padding: 2rem 1.25rem 3rem; }
+  header { padding: 0 1.25rem; }
+  footer { padding: 1.25rem; }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elias Vahlberg</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <span class="name">Elias Vahlberg</span>
+      <nav>
+        <a href="https://github.com/EliasVahlberg" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/elias-vahlberg-384a38213" target="_blank">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <p>
+        I'm a verification and test engineer at Ericsson, working on baseband software for 5G radio systems.
+        Before that: embedded software at HMS Networks, a stint running a small technical consulting company,
+        and five years studying computer science and engineering at Halmstad University with a focus on AI.
+      </p>
+      <p>
+        The projects on this site are what I do on weekends. Most of them started because I wanted to understand
+        something properly — how chess engines actually search, how procedural generation can be made principled,
+        how information fusion works when you have heterogeneous sources and no training data.
+        The research tends to come first, then the implementation.
+      </p>
+      <p>The common thread is Rust and a preference for systems that are simple on the outside and rigorous on the inside.</p>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-label">// projects</h2>
+
+      <article class="project">
+        <h3>saltglass-steppe</h3>
+        <p class="project-tagline">A deterministic TUI roguelike RPG built in Rust.</p>
+        <p>
+          The premise: a post-post-apocalyptic desert where ancient glass storms fuse cities into shimmering labyrinths.
+          You play a scavenger-priest navigating a world where light is dangerous, maps are unreliable,
+          and identity is mutable through refraction adaptations.
+        </p>
+        <p>
+          The TUI isn't a constraint — it's the aesthetic. Particle effects, procedural lighting, animations,
+          and a full camera system, all in the terminal. The game logic runs on a seeded ChaCha8Rng so every
+          run is 100% reproducible from a seed. Everything that can be data-driven is — items, enemies, quests,
+          NPCs, terrain, effects all defined in JSON. The game spawns satellite terminals that communicate
+          via Unix domain sockets with JSON-serialized messages.
+        </p>
+        <p>
+          The world generation uses terrain-forge (see below), which grew directly out of this project's needs.
+          The Glass Seam Bridging Algorithm was developed here first, then extracted and published.
+        </p>
+        <p class="project-meta">~46,500 lines of Rust &nbsp;·&nbsp; ~20,300 lines of content definitions &nbsp;·&nbsp; solo, weekends since Oct 2025</p>
+        <div class="project-links">
+          <a href="https://github.com/EliasVahlberg/saltglass-steppe" target="_blank">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>terrain-forge</h3>
+        <p class="project-tagline">A procedural terrain and dungeon generation library, published on crates.io.</p>
+        <pre class="inline-code">cargo add terrain-forge</pre>
+        <p>
+          15 generation algorithms: BSP, Cellular Automata, WFC, Delaunay Triangulation, DLA, Drunkard Walk,
+          Voronoi, Percolation, Diamond Square, and more. Thread-safe, serializable configs, a pipeline system
+          for chaining algorithms, semantic layers for entity spawning, and a demo framework that outputs PNG comparisons.
+        </p>
+        <p>
+          The novel contribution is the <strong>Glass Seam Bridging Algorithm</strong> — a connectivity algorithm
+          that finds the optimal set of tunnels to connect disconnected floor regions while minimizing total tunnel length.
+          It uses Perimeter Gradient Descent for tunnel endpoints, then prunes candidates through Delaunay triangulation,
+          angular sector filtering, and occlusion filtering. On a 160×120 cellular automata cave with 97 disconnected
+          regions, it reduces fragmentation to 23 connected regions — a 76% reduction — while adding only 2.1% floor tiles.
+          Documented in a formal write-up included in the repository.
+        </p>
+        <div class="project-links">
+          <a href="https://crates.io/crates/terrain-forge" target="_blank">crates.io →</a>
+          <a href="https://docs.rs/terrain-forge" target="_blank">docs.rs →</a>
+          <a href="https://github.com/EliasVahlberg/terrain-forge" target="_blank">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>fishy</h3>
+        <p class="project-tagline">Multi-source log collection anomaly detection through information fusion.</p>
+        <pre class="inline-code">fishy -b logs/baseline/ -c logs/test/
+fishy score: 0.82 — something smells off</pre>
+        <p>
+          The question fishy answers: does this collection of logs look like that collection of logs, and if not,
+          where and why? Not "is this log line anomalous" — that's a classification problem. This is a comparison
+          problem: two bounded, complete multi-source collections, measured against each other.
+        </p>
+        <p>
+          The approach is built on Dempster-Shafer evidence theory. Five analytical methods — distributional divergence,
+          cross-source dependency shift, spectral fingerprinting, co-occurrence structure, and evidence conflict —
+          each produce a basic probability assignment. Those BPAs are combined via Dempster's rule.
+          The score is the fused belief mass on {anomalous}.
+        </p>
+        <p>
+          Each method's entropy measurement is a first-class observable, not a tuning parameter. Methods operating
+          in a degenerate regime are excluded rather than down-weighted. Methods with low baseline variance produce
+          committed evidence when they detect something; methods with high baseline variance produce uncertain evidence
+          that the fusion naturally ignores. No training, no labels, no learned weights. The calibration is intrinsic.
+        </p>
+        <p class="project-meta">No deep learning. No GPU. Pure Rust, runs anywhere.</p>
+        <div class="project-links">
+          <a href="https://github.com/EliasVahlberg/fishy" target="_blank">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>ogun + oku</h3>
+        <p class="project-tagline">Spatial layout generation and procedural city building. Two published Rust crates.</p>
+        <pre class="inline-code">cargo add ogun    # spatial layout engine
+cargo add oku     # city generation facade</pre>
+        <p>
+          <strong>ogun</strong> places nodes and routes edges on a 2D grid using sequential logit dynamics on potential games.
+          Agents arrive one at a time and select positions via Boltzmann sampling against a potential function encoding
+          overlap penalty, pairwise repulsion, and edge attraction. The inverse temperature β controls output character —
+          low β gives organic, irregular layouts; high β gives near-optimal, planned ones.
+          The 500-node stress test (500×500 grid) runs in ~11 seconds — a 24.8× speedup over the naive implementation.
+          Accompanied by a technical write-up.
+        </p>
+        <p>
+          <strong>oku</strong> is a domain-specific facade over ogun for PCB-inspired procedural city generation.
+          It translates urban concepts — building types, road demands, growth phases, city eras — into ogun's abstract
+          layout algorithm, then interprets the output back into city layouts. Optionally applies functional erosion
+          to produce ruins. β controls city character: low β gives organic medieval towns, high β gives planned grids.
+        </p>
+        <p>Both were built for saltglass-steppe's world generation. Named after Yoruba deities.</p>
+        <div class="project-links">
+          <a href="https://crates.io/crates/ogun" target="_blank">ogun on crates.io →</a>
+          <a href="https://crates.io/crates/oku" target="_blank">oku on crates.io →</a>
+          <a href="https://github.com/EliasVahlberg/ogun" target="_blank">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>chess engine</h3>
+        <p class="project-tagline">A chess engine and AI written in C#, built in Unity.</p>
+        <p>
+          Inspired by Sebastian Lague's
+          <a href="https://github.com/SebLague/Chess-Coding-Adventure/tree/Chess-V1-Unity" target="_blank">Chess Coding Adventure</a>,
+          this project started as an exploration of how chess engines actually work and turned into a deep dive into search optimization.
+        </p>
+        <p>
+          Most of the work went into making the engine fast enough that the AI agents could search meaningfully deep.
+          The move generator uses precomputed attack bitboards for knights and kings, direction lookup tables,
+          and precomputed squares-to-edge data. On top of that: iterative deepening with alpha-beta pruning,
+          a transposition table with Zobrist hashing, quiescence search, move ordering, an opening book,
+          and pawn structure evaluation. The search diagnostics track nodes evaluated, quiescence nodes,
+          cutoffs, and transposition table hits.
+        </p>
+        <p>
+          The interesting engineering problem is that all of these techniques interact. Alpha-beta pruning is only
+          as good as your move ordering. Move ordering benefits from the transposition table. The transposition table
+          is only useful if Zobrist hashing is correct. Getting all of it working together correctly is the challenge.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/EliasVahlberg/ChessEngineC-" target="_blank">GitHub →</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="writing">
+      <h2 class="section-label">// academic publications</h2>
+      <ul class="pub-list">
+        <li>
+          <em>Generation of Control Logic from Ordinary Speech</em> — Bachelor's thesis, 2022
+          <a href="https://urn.kb.se/resolve?urn=urn:nbn:se:hh:diva-47347" target="_blank">urn.kb.se →</a>
+        </li>
+        <li>
+          <em>Enhancing Retrieval-Augmented Generation Through Smart Embedding</em> — Master's thesis, 2024
+          <a href="https://urn.kb.se/resolve?urn=urn:nbn:se:hh:diva-55041" target="_blank">urn.kb.se →</a>
+        </li>
+      </ul>
+
+      <h2 class="section-label">// technical write-ups</h2>
+      <p class="pub-note">Self-published documentation accompanying the projects — not peer-reviewed, but written to the same standard I'd hold a paper to.</p>
+      <ul class="pub-list">
+        <li>
+          <em>Ogun: Spatial Layout Generation via Sequential Logit Dynamics on Potential Games</em> — 2026
+          <a href="https://github.com/EliasVahlberg/ogun/blob/main/docs/paper/ogun_paper.pdf" target="_blank">PDF →</a>
+        </li>
+        <li>
+          <em>Glass Seam Bridging Algorithm</em>
+          <a href="https://github.com/EliasVahlberg/terrain-forge/blob/master/docs/paper/glass_seam_bridging_paper.pdf" target="_blank">PDF →</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span>Elias Vahlberg &nbsp;·&nbsp; <a href="mailto:elias.vahlberg.2@gmail.com">elias.vahlberg.2@gmail.com</a></span>
+  </footer>
+</body>
+</html>
