@@ -18,7 +18,7 @@
             <span class="prompt-user">elias</span><span class="prompt-at">@</span><span class="prompt-host">github</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar"> $</span>
           </div>
           <h1 class="site-name">Elias Vahlberg<span class="cursor">▋</span></h1>
-          <p class="site-role">test engineer · rust developer</p>
+          <p class="site-role">software developer · rust</p>
 
           <nav class="sidebar-nav">
             <a href="#about">~/about</a>
@@ -72,7 +72,7 @@
         <h2 class="section-label"><span class="prompt-path">~/projects</span><span class="prompt-dollar"> $</span> ls -l</h2>
 
         <article class="project">
-          <h3>saltglass-steppe</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polygon points="14,2 26,10 26,18 14,26 2,18 2,10"/><line x1="14" y1="2" x2="14" y2="26" stroke-width="0.8" opacity="0.5"/><line x1="2" y1="14" x2="26" y2="14" stroke-width="0.8" opacity="0.5"/></svg>saltglass-steppe</h3>
           <p class="project-tagline">A deterministic TUI roguelike RPG built in Rust.</p>
           <p>
             The premise: a post-post-apocalyptic desert where ancient glass storms fuse cities into shimmering labyrinths.
@@ -97,7 +97,7 @@
         </article>
 
         <article class="project">
-          <h3>terrain-forge</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polyline points="2,24 9,8 14,15 19,6 26,24"/><line x1="2" y1="24" x2="26" y2="24"/></svg>terrain-forge</h3>
           <p class="project-tagline">A procedural terrain and dungeon generation library, published on crates.io.</p>
           <pre class="inline-code" data-copyable><span class="dim-code">$</span> cargo add terrain-forge</pre>
           <p>
@@ -121,7 +121,7 @@
         </article>
 
         <article class="project">
-          <h3>fishy</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4,14 Q9,7 17,14 Q9,21 4,14 Z"/><path d="M17,14 L25,8 L23,14 L25,20 Z"/><circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>fishy</h3>
           <p class="project-tagline">Multi-source log collection anomaly detection through information fusion.</p>
           <pre class="inline-code"><span class="dim-code">$</span> fishy -b logs/baseline/ -c logs/test/
 <span class="accent-code">fishy score: 0.82 — something smells off</span></pre>
@@ -149,7 +149,7 @@
         </article>
 
         <article class="project">
-          <h3>ogun + oku</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="5" r="2.5"/><circle cx="5" cy="21" r="2.5"/><circle cx="23" cy="21" r="2.5"/><line x1="14" y1="7.5" x2="6.5" y2="18.5"/><line x1="14" y1="7.5" x2="21.5" y2="18.5"/><line x1="7.5" y1="21" x2="20.5" y2="21"/></svg>ogun + oku</h3>
           <p class="project-tagline">Spatial layout generation and procedural city building. Two published Rust crates.</p>
           <pre class="inline-code" data-copyable><span class="dim-code">$</span> cargo add ogun    <span class="dim-code"># spatial layout engine</span>
 <span class="dim-code">$</span> cargo add oku     <span class="dim-code"># city generation facade</span></pre>
@@ -176,7 +176,7 @@
         </article>
 
         <article class="project">
-          <h3>chess engine</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M9,25 L9,19 Q9,15 11,13 Q9,11 10,9 Q12,7 14,8 Q15,6 17,7 Q19,9 17,12 Q20,14 19,19 L19,25 Z"/><line x1="7" y1="25" x2="21" y2="25"/></svg>chess engine</h3>
           <p class="project-tagline">A chess engine and AI written in C#, built in Unity.</p>
           <p>
             Inspired by Sebastian Lague's
@@ -282,31 +282,15 @@
     const input  = document.getElementById('term-input');
 
     const PROJECTS = {
-      'saltglass-steppe': {
-        desc: 'Deterministic TUI roguelike RPG in Rust. Post-apocalyptic desert, glass storms, scavenger-priest protagonist. ~46k lines, solo weekends project.',
-        link: 'https://github.com/EliasVahlberg/saltglass-steppe'
-      },
-      'terrain-forge': {
-        desc: '15-algorithm procedural generation library on crates.io. Novel Glass Seam Bridging algorithm with formal write-up.',
-        link: 'https://crates.io/crates/terrain-forge'
-      },
-      'fishy': {
-        desc: 'Multi-source log anomaly detection via Dempster-Shafer evidence fusion. No ML, no GPU, self-calibrating from baseline variance.',
-        link: 'https://github.com/EliasVahlberg/fishy'
-      },
-      'ogun': {
-        desc: 'Spatial layout generation via sequential logit dynamics on potential games. 24.8x speedup on 500-node stress test.',
-        link: 'https://crates.io/crates/ogun'
-      },
-      'oku': {
-        desc: 'PCB-inspired procedural city generation. Facade over ogun. β controls city character from organic medieval to planned grid.',
-        link: 'https://crates.io/crates/oku'
-      },
-      'chess': {
-        desc: 'Chess engine + AI in C#/Unity. Iterative deepening, alpha-beta pruning, Zobrist hashing, transposition table, quiescence search.',
-        link: 'https://github.com/EliasVahlberg/ChessEngineC-'
-      }
+      'saltglass-steppe': { desc: 'Deterministic TUI roguelike RPG in Rust. Post-apocalyptic desert, glass storms, scavenger-priest protagonist. ~46k lines, solo weekends project.', link: 'https://github.com/EliasVahlberg/saltglass-steppe' },
+      'terrain-forge':    { desc: '15-algorithm procedural generation library on crates.io. Novel Glass Seam Bridging algorithm with formal write-up.', link: 'https://crates.io/crates/terrain-forge' },
+      'fishy':            { desc: 'Multi-source log anomaly detection via Dempster-Shafer evidence fusion. No ML, no GPU, self-calibrating from baseline variance.', link: 'https://github.com/EliasVahlberg/fishy' },
+      'ogun':             { desc: 'Spatial layout generation via sequential logit dynamics on potential games. 24.8x speedup on 500-node stress test.', link: 'https://crates.io/crates/ogun' },
+      'oku':              { desc: 'PCB-inspired procedural city generation. Facade over ogun. β controls city character from organic medieval to planned grid.', link: 'https://crates.io/crates/oku' },
+      'chess':            { desc: 'Chess engine + AI in C#/Unity. Iterative deepening, alpha-beta pruning, Zobrist hashing, transposition table, quiescence search.', link: 'https://github.com/EliasVahlberg/ChessEngineC-' }
     };
+
+    const CRATES = ['terrain-forge', 'ogun', 'oku'];
 
     const COMMANDS = {
       help: () => [
@@ -315,6 +299,8 @@
         '  <span class="t-acc">cat</span> &lt;project&gt;   show project info',
         '  <span class="t-acc">whoami</span>          about me',
         '  <span class="t-acc">crates</span>          published crates',
+        '  <span class="t-acc">stats</span>           live crates.io download stats',
+        '  <span class="t-acc">git log</span>         recent commits',
         '  <span class="t-acc">clear</span>           clear terminal',
         '<span class="t-dim">projects: saltglass-steppe, terrain-forge, fishy, ogun, oku, chess</span>'
       ],
@@ -328,7 +314,7 @@
       ],
       whoami: () => [
         'elias vahlberg',
-        '<span class="t-dim">test engineer @ ericsson (5G baseband)</span>',
+        '<span class="t-dim">software developer @ ericsson (5G baseband)</span>',
         '<span class="t-dim">cs/ai @ halmstad university</span>',
         '<span class="t-dim">rust developer on weekends</span>',
         '<span class="t-dim">research first, implementation second</span>'
@@ -351,27 +337,83 @@
       output.scrollTop = output.scrollHeight;
     }
 
+    function printLoader(msg) {
+      const div = document.createElement('div');
+      div.className = 'term-line t-dim';
+      div.textContent = msg;
+      output.appendChild(div);
+      output.scrollTop = output.scrollHeight;
+      return div;
+    }
+
+    async function cmdStats() {
+      const loader = printLoader('fetching crates.io stats...');
+      try {
+        const results = await Promise.all(CRATES.map(name =>
+          fetch(`https://crates.io/api/v1/crates/${name}`, { headers: { 'Accept': 'application/json' } }).then(r => r.json())
+        ));
+        loader.remove();
+        results.forEach(data => {
+          const c = data.crate;
+          print([
+            `<span class="t-acc">${c.name}</span>  v${c.newest_version}`,
+            `  <span class="t-dim">total downloads:</span>  ${c.downloads.toLocaleString()}`,
+            `  <span class="t-dim">recent (90d):</span>     ${c.recent_downloads.toLocaleString()}`
+          ]);
+        });
+      } catch(e) {
+        loader.remove();
+        print(['<span class="t-err">fetch failed — check network</span>']);
+      }
+    }
+
+    async function cmdGitLog() {
+      const repos = ['saltglass-steppe', 'terrain-forge', 'fishy', 'ogun'];
+      const loader = printLoader('fetching recent commits...');
+      try {
+        const results = await Promise.all(repos.map(repo =>
+          fetch(`https://api.github.com/repos/EliasVahlberg/${repo}/commits?per_page=3`)
+            .then(r => r.json())
+            .then(commits => ({ repo, commits }))
+            .catch(() => ({ repo, commits: [] }))
+        ));
+        loader.remove();
+        results.forEach(({ repo, commits }) => {
+          if (!Array.isArray(commits) || !commits.length) return;
+          print([`<span class="t-green">${repo}</span>`]);
+          commits.forEach(c => {
+            const hash = c.sha.slice(0, 7);
+            const msg  = c.commit.message.split('\n')[0].slice(0, 52);
+            const date = c.commit.author.date.slice(0, 10);
+            print([`  <span class="t-dim">${hash}</span> <span class="t-acc">${date}</span> ${msg}`]);
+          });
+        });
+      } catch(e) {
+        loader.remove();
+        print(['<span class="t-err">fetch failed — check network</span>']);
+      }
+    }
+
     function run(raw) {
-      const parts = raw.trim().split(/\s+/);
-      const cmd   = parts[0].toLowerCase();
-      const arg   = parts[1];
+      const trimmed = raw.trim();
+      const lower   = trimmed.toLowerCase();
+      const parts   = trimmed.split(/\s+/);
+      const cmd     = parts[0].toLowerCase();
+      const arg     = parts[1];
 
       print([`<span class="t-dim">elias@github:~ $</span> ${raw}`], true);
+      if (!trimmed) return;
 
-      if (cmd === '') return;
+      if (lower === 'git log' || lower === 'git log --oneline') { cmdGitLog(); return; }
+      if (cmd === 'stats') { cmdStats(); return; }
 
       if (cmd === 'cat') {
-        const key = arg ? arg.toLowerCase() : '';
+        const key  = arg ? arg.toLowerCase() : '';
         const proj = PROJECTS[key];
         if (proj) {
-          print([
-            `<span class="t-acc">${key}</span>`,
-            proj.desc,
-            `<a href="${proj.link}" target="_blank">${proj.link}</a>`
-          ]);
+          print([`<span class="t-acc">${key}</span>`, proj.desc, `<a href="${proj.link}" target="_blank">${proj.link}</a>`]);
         } else {
-          print([`<span class="t-err">cat: ${arg || '?'}: no such project</span>`,
-                 '<span class="t-dim">try: ls</span>']);
+          print([`<span class="t-err">cat: ${arg || '?'}: no such project</span>`, '<span class="t-dim">try: ls</span>']);
         }
         return;
       }
@@ -382,32 +424,28 @@
         return;
       }
 
-      print([
-        `<span class="t-err">command not found: ${cmd}</span>`,
-        '<span class="t-dim">type \'help\' for available commands</span>'
-      ]);
+      print([`<span class="t-err">command not found: ${cmd}</span>`, '<span class="t-dim">type \'help\' for available commands</span>']);
     }
 
-    // Boot sequence
-    const boot = [
-      '<span class="t-dim">initializing...</span>',
-      '<span class="t-dim">loading projects... <span class="t-green">done</span></span>',
+    // Boot sequence with ASCII splash
+    const SPLASH = [
+      '<span class="t-acc">┌─────────────────────────────┐</span>',
+      '<span class="t-acc">│</span>  elias vahlberg             <span class="t-acc">│</span>',
+      '<span class="t-acc">│</span>  software developer         <span class="t-acc">│</span>',
+      '<span class="t-acc">│</span>  rust · systems · ai        <span class="t-acc">│</span>',
+      '<span class="t-acc">└─────────────────────────────┘</span>',
       '',
-      'type <span class="t-acc">help</span> for available commands'
+      '<span class="t-dim">type <span class="t-acc">help</span> for available commands</span>'
     ];
     let i = 0;
     function bootStep() {
-      if (i < boot.length) {
-        print([boot[i++]]);
-        setTimeout(bootStep, 120);
-      }
+      if (i < SPLASH.length) { print([SPLASH[i++]]); setTimeout(bootStep, 80); }
     }
     bootStep();
 
-    // Input handling
+    // Input + history
     const history = [];
     let histIdx = -1;
-
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         const val = input.value;
@@ -424,8 +462,6 @@
         else { histIdx = -1; input.value = ''; }
       }
     });
-
-    // Click anywhere in terminal to focus input
     document.querySelector('.terminal-panel').addEventListener('click', () => input.focus());
   </script>
 

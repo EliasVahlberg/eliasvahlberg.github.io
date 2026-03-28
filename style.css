@@ -181,6 +181,16 @@ a:hover { text-decoration: underline; }
   font-weight: 600;
   color: #e8e8e8;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.proj-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
 .project-tagline {
