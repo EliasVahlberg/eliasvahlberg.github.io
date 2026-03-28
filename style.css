@@ -370,6 +370,15 @@ footer .dim { color: var(--text-dim); }
 .term-line a { color: var(--accent); }
 .term-cmd { opacity: 0.5; }
 
+.term-splash {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: inherit;
+  line-height: 1.5;
+  white-space: pre;
+  margin-bottom: 0.15rem;
+}
+
 .t-dim   { color: var(--text-dim); }
 .t-acc   { color: var(--accent); }
 .t-green { color: var(--green); }
