@@ -320,7 +320,7 @@ footer .dim { color: var(--text-dim); }
   display: flex;
   flex-direction: column;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 1rem;
   overflow: hidden;
 }
 
@@ -383,7 +383,7 @@ footer .dim { color: var(--text-dim); }
   outline: none;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 1rem;
   caret-color: var(--accent);
   min-width: 0;
 }
