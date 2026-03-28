@@ -144,7 +144,7 @@ a:hover { text-decoration: underline; }
 
 /* ── Content ── */
 .content {
-  width: 620px;
+  width: 780px;
   flex-shrink: 0;
   min-width: 0;
   padding: 3rem 3.5rem 4rem;
