@@ -379,6 +379,15 @@ footer .dim { color: var(--text-dim); }
   margin-bottom: 0.15rem;
 }
 
+.term-map {
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  white-space: pre;
+  opacity: 0.85;
+}
+
 .t-dim   { color: var(--text-dim); }
 .t-acc   { color: var(--accent); }
 .t-green { color: var(--green); }

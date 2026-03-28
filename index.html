@@ -264,7 +264,12 @@
 
   </div>
 
-  <script>
+  <script type="module">
+    // ── WASM: terrain-forge ──
+    import init, { generate as tfGenerate } from './pkg/terrain_forge_wasm.js';
+    let wasmReady = false;
+    init().then(() => { wasmReady = true; });
+
     // ── Copy buttons ──
     document.querySelectorAll('pre[data-copyable]').forEach(pre => {
       const btn = document.createElement('button');
@@ -304,6 +309,8 @@
         '  <span class="t-acc">crates</span>          published crates',
         '  <span class="t-acc">stats</span>           live crates.io download stats',
         '  <span class="t-acc">git log</span>         recent commits',
+        '  <span class="t-acc">generate</span> &lt;algo&gt; run terrain-forge in the browser',
+        '  <span class="t-dim">           algos: bsp, cellular, drunkard, maze, rooms, dla, voronoi</span>',
         '  <span class="t-acc">clear</span>           clear terminal',
         '<span class="t-dim">projects: saltglass-steppe, terrain-forge, fishy, ogun, oku, chess</span>'
       ],
@@ -409,6 +416,24 @@
 
       if (lower === 'git log' || lower === 'git log --oneline') { cmdGitLog(); return; }
       if (cmd === 'stats') { cmdStats(); return; }
+      if (cmd === 'generate') {
+        const algo = arg || 'bsp';
+        const seed = Math.floor(Math.random() * 0xFFFFFF);
+        if (!wasmReady) { print(['<span class="t-dim">wasm loading, try again in a moment...</span>']); return; }
+        try {
+          const map = tfGenerate(algo, 60, 22, seed);
+          if (map.startsWith('error:')) { print([`<span class="t-err">${map}</span>`]); return; }
+          const pre = document.createElement('pre');
+          pre.className = 'term-map';
+          pre.textContent = map;
+          output.appendChild(pre);
+          print([`<span class="t-dim">seed: ${seed}  algo: ${algo}  (run again for a new map)</span>`]);
+          output.scrollTop = output.scrollHeight;
+        } catch(e) {
+          print([`<span class="t-err">generate failed: ${e.message}</span>`]);
+        }
+        return;
+      }
 
       if (cmd === 'cat') {
         const key  = arg ? arg.toLowerCase() : '';
