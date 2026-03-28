@@ -429,17 +429,24 @@
 
     // Boot sequence with ASCII splash
     const SPLASH = [
-      '<span class="t-acc">┌─────────────────────────────┐</span>',
-      '<span class="t-acc">│</span>  elias vahlberg             <span class="t-acc">│</span>',
-      '<span class="t-acc">│</span>  software developer         <span class="t-acc">│</span>',
-      '<span class="t-acc">│</span>  rust · systems · ai        <span class="t-acc">│</span>',
-      '<span class="t-acc">└─────────────────────────────┘</span>',
+      '┌─────────────────────────────┐',
+      '│  elias vahlberg             │',
+      '│  software developer         │',
+      '│  rust / systems / ai        │',
+      '└─────────────────────────────┘',
       '',
-      '<span class="t-dim">type <span class="t-acc">help</span> for available commands</span>'
+      "type 'help' for available commands"
     ];
     let i = 0;
     function bootStep() {
-      if (i < SPLASH.length) { print([SPLASH[i++]]); setTimeout(bootStep, 80); }
+      if (i < SPLASH.length) {
+        const div = document.createElement('div');
+        div.className = i < 5 ? 'term-line t-acc' : (i === 6 ? 'term-line t-dim' : 'term-line');
+        div.textContent = SPLASH[i++];
+        output.appendChild(div);
+        output.scrollTop = output.scrollHeight;
+        setTimeout(bootStep, 80);
+      }
     }
     bootStep();
 
