@@ -1,0 +1,15 @@
+{
+  "name": "terrain-forge-wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "terrain_forge_wasm_bg.wasm",
+    "terrain_forge_wasm.js",
+    "terrain_forge_wasm.d.ts"
+  ],
+  "main": "terrain_forge_wasm.js",
+  "types": "terrain_forge_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
