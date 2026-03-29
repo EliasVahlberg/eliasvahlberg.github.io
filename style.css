@@ -190,10 +190,10 @@ a:hover { text-decoration: underline; }
 }
 
 .proj-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(246, 167, 59, 0.4));
 }
 
 .project-tagline {
@@ -328,8 +328,11 @@ footer .dim { color: var(--text-dim); }
   position: sticky;
   top: 0;
   height: 100vh;
-  background: #060c1a;
-  border-left: 1px solid var(--border);
+  background: linear-gradient(160deg, rgba(10,17,36,0.92) 0%, rgba(6,10,24,0.97) 100%);
+  border-left: 1px solid rgba(250, 211, 47, 0.35);
+  box-shadow: -2px 0 24px rgba(246, 167, 59, 0.12), -1px 0 6px rgba(250, 211, 47, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   font-family: var(--font-mono);
@@ -342,8 +345,8 @@ footer .dim { color: var(--text-dim); }
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 0.75rem;
-  background: #0a1124;
-  border-bottom: 1px solid var(--border);
+  background: rgba(10, 17, 36, 0.6);
+  border-bottom: 1px solid rgba(250, 211, 47, 0.2);
   flex-shrink: 0;
 }
 
@@ -401,7 +404,7 @@ footer .dim { color: var(--text-dim); }
   align-items: center;
   padding: 0.5rem 0.75rem;
   border-top: 1px solid var(--border);
-  background: #060c1a;
+  background: rgba(6, 10, 24, 0.7);
   flex-shrink: 0;
 }
 

@@ -71,11 +71,22 @@
         <p>The common thread is Rust and a preference for systems that are simple on the outside and rigorous on the inside.</p>
       </section>
 
+    <!-- Shared SVG gradient definition -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#FAD32F"/>
+          <stop offset="50%"  stop-color="#F6A73B"/>
+          <stop offset="100%" stop-color="#F35645"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
       <section id="projects" class="content-section">
         <h2 class="section-label"><span class="prompt-path">~/projects</span><span class="prompt-dollar"> $</span> ls -l</h2>
 
         <article class="project">
-          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polygon points="14,2 26,10 26,18 14,26 2,18 2,10"/><line x1="14" y1="2" x2="14" y2="26" stroke-width="0.8" opacity="0.5"/><line x1="2" y1="14" x2="26" y2="14" stroke-width="0.8" opacity="0.5"/></svg>saltglass-steppe</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8" stroke-linejoin="round"><polygon points="14,2 26,10 26,18 14,26 2,18 2,10"/><line x1="14" y1="2" x2="14" y2="26" stroke-width="0.8" opacity="0.6"/><line x1="2" y1="14" x2="26" y2="14" stroke-width="0.8" opacity="0.6"/></svg>saltglass-steppe</h3>
           <p class="project-tagline">A deterministic TUI roguelike RPG built in Rust.</p>
           <p>
             The premise: a post-post-apocalyptic desert where ancient glass storms fuse cities into shimmering labyrinths.
@@ -100,7 +111,7 @@
         </article>
 
         <article class="project">
-          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polyline points="2,24 9,8 14,15 19,6 26,24"/><line x1="2" y1="24" x2="26" y2="24"/></svg>terrain-forge</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8" stroke-linejoin="round"><polyline points="2,24 9,8 14,15 19,6 26,24"/><line x1="2" y1="24" x2="26" y2="24"/></svg>terrain-forge</h3>
           <p class="project-tagline">A procedural terrain and dungeon generation library, published on crates.io.</p>
           <pre class="inline-code" data-copyable><span class="dim-code">$</span> cargo add terrain-forge</pre>
           <p>
@@ -124,7 +135,7 @@
         </article>
 
         <article class="project">
-          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4,14 Q9,7 17,14 Q9,21 4,14 Z"/><path d="M17,14 L25,8 L23,14 L25,20 Z"/><circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>fishy</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8" stroke-linejoin="round"><path d="M4,14 Q9,7 17,14 Q9,21 4,14 Z"/><path d="M17,14 L25,8 L23,14 L25,20 Z"/><circle cx="9" cy="13" r="1.2" fill="url(#icon-grad)" stroke="none"/></svg>fishy</h3>
           <p class="project-tagline">Multi-source log collection anomaly detection through information fusion.</p>
           <pre class="inline-code"><span class="dim-code">$</span> fishy -b logs/baseline/ -c logs/test/
 <span class="accent-code">fishy score: 0.82 — something smells off</span></pre>
@@ -152,7 +163,7 @@
         </article>
 
         <article class="project">
-          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="5" r="2.5"/><circle cx="5" cy="21" r="2.5"/><circle cx="23" cy="21" r="2.5"/><line x1="14" y1="7.5" x2="6.5" y2="18.5"/><line x1="14" y1="7.5" x2="21.5" y2="18.5"/><line x1="7.5" y1="21" x2="20.5" y2="21"/></svg>ogun + oku</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8"><circle cx="14" cy="5" r="2.5"/><circle cx="5" cy="21" r="2.5"/><circle cx="23" cy="21" r="2.5"/><line x1="14" y1="7.5" x2="6.5" y2="18.5"/><line x1="14" y1="7.5" x2="21.5" y2="18.5"/><line x1="7.5" y1="21" x2="20.5" y2="21"/></svg>ogun + oku</h3>
           <p class="project-tagline">Spatial layout generation and procedural city building. Two published Rust crates.</p>
           <pre class="inline-code" data-copyable><span class="dim-code">$</span> cargo add ogun    <span class="dim-code"># spatial layout engine</span>
 <span class="dim-code">$</span> cargo add oku     <span class="dim-code"># city generation facade</span></pre>
@@ -179,7 +190,7 @@
         </article>
 
         <article class="project">
-          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M9,25 L9,19 Q9,15 11,13 Q9,11 10,9 Q12,7 14,8 Q15,6 17,7 Q19,9 17,12 Q20,14 19,19 L19,25 Z"/><line x1="7" y1="25" x2="21" y2="25"/></svg>chess engine</h3>
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8" stroke-linejoin="round"><path d="M9,25 L9,19 Q9,15 11,13 Q9,11 10,9 Q12,7 14,8 Q15,6 17,7 Q19,9 17,12 Q20,14 19,19 L19,25 Z"/><line x1="7" y1="25" x2="21" y2="25"/></svg>chess engine</h3>
           <p class="project-tagline">A chess engine and AI written in C#, built in Unity.</p>
           <p>
             Inspired by Sebastian Lague's
