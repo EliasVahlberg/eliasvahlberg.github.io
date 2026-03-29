@@ -258,7 +258,10 @@
       <div class="term-output" id="term-output"></div>
       <div class="term-input-row">
         <span class="term-prompt-str">elias@github:~ $&nbsp;</span>
-        <input class="term-input" id="term-input" type="text" autocomplete="off" spellcheck="false" autofocus>
+        <div class="term-input-wrap">
+          <input class="term-input" id="term-input" type="text" autocomplete="off" spellcheck="false" autofocus>
+          <span class="term-ghost" id="term-ghost"></span>
+        </div>
       </div>
     </aside>
 
@@ -586,26 +589,46 @@
     // Input + history + autocomplete
     const history = [];
     let histIdx = -1;
+    const ghost  = document.getElementById('term-ghost');
     const CMDS_AC   = ['ls', 'cat ', 'whoami', 'crates', 'crate-stats', 'git log', 'terrain-forge ', 'clear', 'help'];
     const PROJ_KEYS = Object.keys(PROJECTS);
     const ALGOS_AC  = ['bsp', 'cellular', 'drunkard', 'maze', 'rooms', 'dla', 'voronoi'];
 
+    function getCompletion(val) {
+      if (!val) return '';
+      if (val.startsWith('cat ')) {
+        const arg = val.slice(4);
+        const m = PROJ_KEYS.find(p => p.startsWith(arg) && p !== arg);
+        return m ? 'cat ' + m : '';
+      }
+      if (val.startsWith('terrain-forge ')) {
+        const arg = val.slice(14);
+        const m = ALGOS_AC.find(a => a.startsWith(arg) && a !== arg);
+        return m ? 'terrain-forge ' + m : '';
+      }
+      return CMDS_AC.find(c => c.startsWith(val) && c !== val) || '';
+    }
+
+    function updateGhost() {
+      const val = input.value;
+      const full = getCompletion(val);
+      // ghost shows typed part (transparent) + suffix (dim)
+      if (full) {
+        ghost.innerHTML =
+          '<span style="color:transparent">' + full.slice(0, val.length) + '</span>' +
+          '<span style="color:var(--text-dim);opacity:0.5">' + full.slice(val.length) + '</span>';
+      } else {
+        ghost.innerHTML = '';
+      }
+    }
+
+    input.addEventListener('input', updateGhost);
+
     input.addEventListener('keydown', e => {
       if (e.key === 'Tab') {
         e.preventDefault();
-        const val = input.value;
-        if (val.startsWith('cat ')) {
-          const arg = val.slice(4);
-          const m = PROJ_KEYS.find(p => p.startsWith(arg) && p !== arg);
-          if (m) input.value = 'cat ' + m;
-        } else if (val.startsWith('terrain-forge ')) {
-          const arg = val.slice(14);
-          const m = ALGOS_AC.find(a => a.startsWith(arg) && a !== arg);
-          if (m) input.value = 'terrain-forge ' + m;
-        } else {
-          const m = CMDS_AC.find(c => c.startsWith(val) && c !== val);
-          if (m) input.value = m;
-        }
+        const full = getCompletion(input.value);
+        if (full) { input.value = full; updateGhost(); }
         return;
       }
       if (e.key === 'Enter') {
@@ -614,13 +637,14 @@
         histIdx = -1;
         run(val);
         input.value = '';
+        ghost.innerHTML = '';
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        if (histIdx < history.length - 1) input.value = history[++histIdx];
+        if (histIdx < history.length - 1) { input.value = history[++histIdx]; updateGhost(); }
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        if (histIdx > 0) input.value = history[--histIdx];
-        else { histIdx = -1; input.value = ''; }
+        if (histIdx > 0) { input.value = history[--histIdx]; updateGhost(); }
+        else { histIdx = -1; input.value = ''; ghost.innerHTML = ''; }
       }
     });
     document.querySelector('.terminal-panel').addEventListener('click', () => input.focus());

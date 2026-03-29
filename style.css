@@ -404,8 +404,19 @@ footer .dim { color: var(--text-dim); }
 
 .term-prompt-str { color: var(--green); white-space: nowrap; }
 
-.term-input {
+.term-input-wrap {
+  position: relative;
   flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.term-input {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
   background: transparent;
   border: none;
   outline: none;
@@ -414,6 +425,20 @@ footer .dim { color: var(--text-dim); }
   font-size: 1rem;
   caret-color: var(--accent);
   min-width: 0;
+}
+
+.term-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: transparent; /* typed portion invisible */
+  white-space: pre;
 }
 
 @media (max-width: 1100px) { .terminal-panel { display: none; } }
