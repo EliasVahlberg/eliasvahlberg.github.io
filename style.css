@@ -1,13 +1,14 @@
 :root {
-  --bg:        #0d0d0d;
-  --bg-card:   #111111;
-  --bg-sidebar:#0f0f0f;
-  --border:    #1e1e1e;
-  --text:      #c8c8c8;
-  --text-dim:  #555555;
-  --accent:    #e07b39;
-  --green:     #5a9e6f;
-  --blue:      #5a8fa8;
+  --bg:        #0f0907;
+  --bg-card:   #160c08;
+  --bg-sidebar:#0d0806;
+  --border:    #2a1510;
+  --text:      #e0cdb8;
+  --text-dim:  #6b4a3a;
+  --accent:    #e05a2b;
+  --green:     #d4a017;
+  --blue:      #c0392b;
+  --secondary: #c8a882;
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
   --font-sans: "Inter", system-ui, sans-serif;
   --sidebar-w: 280px;
@@ -88,8 +89,9 @@ a:hover { text-decoration: underline; }
 
 .site-role {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-dim);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--secondary);
   margin-top: 0.3rem;
   letter-spacing: 0.04em;
 }
@@ -103,8 +105,9 @@ a:hover { text-decoration: underline; }
 }
 .sidebar-nav a {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary);
   padding: 0.2rem 0;
   transition: color 0.15s;
 }
@@ -113,7 +116,7 @@ a:hover { text-decoration: underline; }
 /* Sidebar about */
 .sidebar-about p {
   font-size: 0.82rem;
-  color: #9ab0a8;
+  color: var(--secondary);
   line-height: 1.6;
 }
 .sidebar-about p + p { margin-top: 0.75rem; }
@@ -194,8 +197,8 @@ a:hover { text-decoration: underline; }
 }
 
 .project-tagline {
-  font-size: 0.85rem;
-  color: var(--text-dim);
+  font-size: 0.88rem;
+  color: var(--secondary);
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -206,7 +209,7 @@ a:hover { text-decoration: underline; }
 .project-meta {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--text-dim);
+  color: var(--secondary);
   margin-top: 1rem !important;
 }
 
@@ -325,7 +328,7 @@ footer .dim { color: var(--text-dim); }
   position: sticky;
   top: 0;
   height: 100vh;
-  background: #080808;
+  background: #080503;
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -339,7 +342,7 @@ footer .dim { color: var(--text-dim); }
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 0.75rem;
-  background: #111;
+  background: #0d0806;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -398,7 +401,7 @@ footer .dim { color: var(--text-dim); }
   align-items: center;
   padding: 0.5rem 0.75rem;
   border-top: 1px solid var(--border);
-  background: #080808;
+  background: #080503;
   flex-shrink: 0;
 }
 
