@@ -290,12 +290,103 @@
     const input  = document.getElementById('term-input');
 
     const PROJECTS = {
-      'saltglass-steppe': { desc: 'Deterministic TUI roguelike RPG in Rust. Post-apocalyptic desert, glass storms, scavenger-priest protagonist. ~46k lines, solo weekends project.', link: 'https://github.com/EliasVahlberg/saltglass-steppe' },
-      'terrain-forge':    { desc: '15-algorithm procedural generation library on crates.io. Novel Glass Seam Bridging algorithm with formal write-up.', link: 'https://crates.io/crates/terrain-forge' },
-      'fishy':            { desc: 'Multi-source log anomaly detection via Dempster-Shafer evidence fusion. No ML, no GPU, self-calibrating from baseline variance.', link: 'https://github.com/EliasVahlberg/fishy' },
-      'ogun':             { desc: 'Spatial layout generation via sequential logit dynamics on potential games. 24.8x speedup on 500-node stress test.', link: 'https://crates.io/crates/ogun' },
-      'oku':              { desc: 'PCB-inspired procedural city generation. Facade over ogun. β controls city character from organic medieval to planned grid.', link: 'https://crates.io/crates/oku' },
-      'chess':            { desc: 'Chess engine + AI in C#/Unity. Iterative deepening, alpha-beta pruning, Zobrist hashing, transposition table, quiescence search.', link: 'https://github.com/EliasVahlberg/ChessEngineC-' }
+      'saltglass-steppe': {
+        desc: 'Deterministic TUI roguelike RPG in Rust. Post-apocalyptic desert, glass storms, scavenger-priest protagonist. ~46k lines, solo weekends project.',
+        link: 'https://github.com/EliasVahlberg/saltglass-steppe',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  saltglass-steppe                │',
+          '  │  TUI roguelike · Rust · ~46k loc │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '   ┌─────────┼──────────┐',
+          '   ▼         ▼          ▼',
+          ' [engine]  [world]   [content]',
+          ' ChaCha8   terrain-   JSON',
+          ' determin  forge      data'
+        ]
+      },
+      'terrain-forge': {
+        desc: '15-algorithm procedural generation library on crates.io. Novel Glass Seam Bridging algorithm with formal write-up.',
+        link: 'https://crates.io/crates/terrain-forge',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  terrain-forge                   │',
+          '  │  procgen library · crates.io     │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '   ┌─────────┼──────────┐',
+          '   ▼         ▼          ▼',
+          ' [BSP]   [cellular]   [GSB]',
+          '  rooms    caves     novel',
+          '                    algo'
+        ]
+      },
+      'fishy': {
+        desc: 'Multi-source log anomaly detection via Dempster-Shafer evidence fusion. No ML, no GPU, self-calibrating from baseline variance.',
+        link: 'https://github.com/EliasVahlberg/fishy',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  fishy                           │',
+          '  │  anomaly detection · DS theory   │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '   ┌─────────┼──────────┐',
+          '   ▼         ▼          ▼',
+          ' [dist]   [spec]     [dep]',
+          '  JSD     FFT/DWT   MI matrix',
+          '          ↓',
+          '       DS fusion → score'
+        ]
+      },
+      'ogun': {
+        desc: 'Spatial layout generation via sequential logit dynamics on potential games. 24.8x speedup on 500-node stress test.',
+        link: 'https://crates.io/crates/ogun',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  ogun + oku                      │',
+          '  │  spatial layout · city gen       │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '      ┌──────┴──────┐',
+          '      ▼             ▼',
+          '   [ogun]         [oku]',
+          '  Boltzmann β   city facade',
+          '  layout engine  erosion'
+        ]
+      },
+      'oku': {
+        desc: 'PCB-inspired procedural city generation. Facade over ogun. β controls city character from organic medieval to planned grid.',
+        link: 'https://crates.io/crates/oku',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  oku                             │',
+          '  │  city generation · crates.io     │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '      ┌──────┴──────┐',
+          '      ▼             ▼',
+          '  CitySpec +     ogun::generate()',
+          '  AgentCatalog        │',
+          '                      ▼',
+          '                 CityLayout'
+        ]
+      },
+      'chess': {
+        desc: 'Chess engine + AI in C#/Unity. Iterative deepening, alpha-beta pruning, Zobrist hashing, transposition table, quiescence search.',
+        link: 'https://github.com/EliasVahlberg/ChessEngineC-',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  chess engine                    │',
+          '  │  C# · Unity · AI search          │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '   ┌─────────┼──────────┐',
+          '   ▼         ▼          ▼',
+          '[minimax] [alpha-β]  [zobrist]',
+          '  search   pruning   hashing'
+        ]
+      }
     };
 
     const CRATES = ['terrain-forge', 'ogun', 'oku'];
@@ -303,16 +394,16 @@
     const COMMANDS = {
       help: () => [
         '<span class="t-dim">available commands:</span>',
-        '  <span class="t-acc">ls</span>              list projects',
-        '  <span class="t-acc">cat</span> &lt;project&gt;   show project info',
-        '  <span class="t-acc">whoami</span>          about me',
-        '  <span class="t-acc">crates</span>          published crates',
-        '  <span class="t-acc">stats</span>           live crates.io download stats',
-        '  <span class="t-acc">git log</span>         recent commits',
-        '  <span class="t-acc">generate</span> &lt;algo&gt; run terrain-forge in the browser',
-        '  <span class="t-dim">           algos: bsp, cellular, drunkard, maze, rooms, dla, voronoi</span>',
-        '  <span class="t-acc">clear</span>           clear terminal',
-        '<span class="t-dim">projects: saltglass-steppe, terrain-forge, fishy, ogun, oku, chess</span>'
+        '  <span class="t-acc">ls</span>                      <span class="t-dim"># list projects</span>',
+        '  <span class="t-acc">cat</span> &lt;project&gt;           <span class="t-dim"># show project info</span>',
+        '    saltglass-steppe, terrain-forge, fishy, ogun, oku, chess',
+        '  <span class="t-acc">whoami</span>                  <span class="t-dim"># about me</span>',
+        '  <span class="t-acc">crates</span>                  <span class="t-dim"># published crates</span>',
+        '  <span class="t-acc">crate-stats</span>             <span class="t-dim"># live crates.io download stats</span>',
+        '  <span class="t-acc">git log</span>                 <span class="t-dim"># recent commits</span>',
+        '  <span class="t-acc">terrain-forge</span> &lt;algo&gt;    <span class="t-dim"># run terrain-forge in the browser</span>',
+        '    algos: bsp, cellular, drunkard, maze, rooms, dla, voronoi',
+        '  <span class="t-acc">clear</span>                   <span class="t-dim"># clear terminal</span>',
       ],
       ls: () => [
         '<span class="t-green">drwxr-xr-x</span>  saltglass-steppe',
@@ -415,8 +506,9 @@
       if (!trimmed) return;
 
       if (lower === 'git log' || lower === 'git log --oneline') { cmdGitLog(); return; }
-      if (cmd === 'stats') { cmdStats(); return; }
-      if (cmd === 'generate') {
+      if (cmd === 'crate-stats') { cmdStats(); return; }
+
+      if (cmd === 'terrain-forge') {
         const algo = arg || 'bsp';
         const seed = Math.floor(Math.random() * 0xFFFFFF);
         if (!wasmReady) { print(['<span class="t-dim">wasm loading, try again in a moment...</span>']); return; }
@@ -430,7 +522,7 @@
           print([`<span class="t-dim">seed: ${seed}  algo: ${algo}  (run again for a new map)</span>`]);
           output.scrollTop = output.scrollHeight;
         } catch(e) {
-          print([`<span class="t-err">generate failed: ${e.message}</span>`]);
+          print([`<span class="t-err">terrain-forge failed: ${e.message}</span>`]);
         }
         return;
       }
@@ -439,7 +531,16 @@
         const key  = arg ? arg.toLowerCase() : '';
         const proj = PROJECTS[key];
         if (proj) {
-          print([`<span class="t-acc">${key}</span>`, proj.desc, `<a href="${proj.link}" target="_blank">${proj.link}</a>`]);
+          const pre = document.createElement('pre');
+          pre.className = 'term-splash';
+          pre.style.color = 'var(--green)';
+          pre.textContent = proj.art.join('\n');
+          output.appendChild(pre);
+          print([
+            proj.desc,
+            `<a href="${proj.link}" target="_blank">${proj.link}</a>`
+          ]);
+          output.scrollTop = output.scrollHeight;
         } else {
           print([`<span class="t-err">cat: ${arg || '?'}: no such project</span>`, '<span class="t-dim">try: ls</span>']);
         }
@@ -482,10 +583,31 @@
     }
     setTimeout(bootStep, 80);
 
-    // Input + history
+    // Input + history + autocomplete
     const history = [];
     let histIdx = -1;
+    const CMDS_AC   = ['ls', 'cat ', 'whoami', 'crates', 'crate-stats', 'git log', 'terrain-forge ', 'clear', 'help'];
+    const PROJ_KEYS = Object.keys(PROJECTS);
+    const ALGOS_AC  = ['bsp', 'cellular', 'drunkard', 'maze', 'rooms', 'dla', 'voronoi'];
+
     input.addEventListener('keydown', e => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const val = input.value;
+        if (val.startsWith('cat ')) {
+          const arg = val.slice(4);
+          const m = PROJ_KEYS.find(p => p.startsWith(arg) && p !== arg);
+          if (m) input.value = 'cat ' + m;
+        } else if (val.startsWith('terrain-forge ')) {
+          const arg = val.slice(14);
+          const m = ALGOS_AC.find(a => a.startsWith(arg) && a !== arg);
+          if (m) input.value = 'terrain-forge ' + m;
+        } else {
+          const m = CMDS_AC.find(c => c.startsWith(val) && c !== val);
+          if (m) input.value = m;
+        }
+        return;
+      }
       if (e.key === 'Enter') {
         const val = input.value;
         if (val.trim()) history.unshift(val);
