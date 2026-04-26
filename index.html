@@ -164,6 +164,34 @@
         </article>
 
         <article class="project">
+          <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8" stroke-linejoin="round"><circle cx="14" cy="14" r="10"/><circle cx="14" cy="14" r="4" stroke-dasharray="2 2"/><line x1="14" y1="4" x2="14" y2="10"/><line x1="14" y1="18" x2="14" y2="24"/><line x1="4" y1="14" x2="10" y2="14"/><line x1="18" y1="14" x2="24" y2="14"/></svg>chronicle</h3>
+          <p class="project-tagline">Event-centric narrative knowledge graphs with temporal verification.</p>
+          <pre class="inline-code"><span class="dim-code">$</span> chronicle validate world/
+<span class="accent-code">error: actor 'brother_halix' has status Captured as of year 16
+       but participates in 'siege_of_silica' (year 20)</span></pre>
+          <p>
+            World-building rots. You write 45 lore documents and they start contradicting each other — a character
+            dies in one file and shows up alive in another, a city is destroyed but hosts events decades later.
+            Chronicle replaces disconnected prose with a typed knowledge graph where every relationship passes
+            through an event, borrowed from how historians model real history (CIDOC CRM, ISO 21127).
+          </p>
+          <p>
+            The interesting part: temporal verification using Allen's Interval Algebra. The graph isn't just storage —
+            it's a constraint system. CIDOC CRM was designed for historians analyzing what <em>did</em> happen.
+            Chronicle uses the same formal model to check what <em>can</em> happen. Same math, different direction.
+          </p>
+          <p>
+            Different sources have different reliability. Archive-drones give near-perfect accounts; NPCs give biased
+            fragments. Two conflicting stories about the same war aren't a bug — they're two subjective fragments
+            with typed fidelity ratings, both queryable against the objective ground truth.
+          </p>
+          <p class="project-meta">Pure Rust. petgraph + Allen's intervals + RON. ~1,100 lines.</p>
+          <div class="project-links">
+            <a href="https://github.com/EliasVahlberg/chronicle" target="_blank">GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project">
           <h3><svg class="proj-icon" viewBox="0 0 28 28" fill="none" stroke="url(#icon-grad)" stroke-width="1.8"><circle cx="14" cy="5" r="2.5"/><circle cx="5" cy="21" r="2.5"/><circle cx="23" cy="21" r="2.5"/><line x1="14" y1="7.5" x2="6.5" y2="18.5"/><line x1="14" y1="7.5" x2="21.5" y2="18.5"/><line x1="7.5" y1="21" x2="20.5" y2="21"/></svg>ogun + oku</h3>
           <p class="project-tagline">Spatial layout generation and procedural city building. Two published Rust crates.</p>
           <pre class="inline-code" data-copyable><span class="dim-code">$</span> cargo add ogun    <span class="dim-code"># spatial layout engine</span>
@@ -359,6 +387,23 @@
           '       DS fusion → score'
         ]
       },
+      'chronicle': {
+        desc: 'Event-centric narrative knowledge graphs with temporal verification. Allen\'s Interval Algebra for consistency checking.',
+        link: 'https://github.com/EliasVahlberg/chronicle',
+        art: [
+          '  ┌──────────────────────────────────┐',
+          '  │  chronicle                       │',
+          '  │  narrative graphs · verification │',
+          '  └──────────┬───────────────────────┘',
+          '             │',
+          '   [Actor]──event──[Place]',
+          '      │       │       │',
+          '    role    time    state',
+          '  sentiment  span   change',
+          '             │',
+          '     Allen\'s intervals → verdict'
+        ]
+      },
       'ogun': {
         desc: 'Spatial layout generation via sequential logit dynamics on potential games. 24.8x speedup on 500-node stress test.',
         link: 'https://crates.io/crates/ogun',
@@ -416,7 +461,7 @@
         '<span class="t-dim">available commands:</span>',
         '  <span class="t-acc">ls</span>                      <span class="t-dim"># list projects</span>',
         '  <span class="t-acc">cat</span> &lt;project&gt;           <span class="t-dim"># show project info</span>',
-        '    saltglass-steppe, terrain-forge, fishy, ogun, oku, chess',
+        '    saltglass-steppe, terrain-forge, fishy, chronicle, ogun, oku, chess',
         '  <span class="t-acc">whoami</span>                  <span class="t-dim"># about me</span>',
         '  <span class="t-acc">crates</span>                  <span class="t-dim"># published crates</span>',
         '  <span class="t-acc">crate-stats</span>             <span class="t-dim"># live crates.io download stats</span>',
@@ -489,7 +534,7 @@
     }
 
     async function cmdGitLog() {
-      const repos = ['saltglass-steppe', 'terrain-forge', 'fishy', 'ogun'];
+      const repos = ['saltglass-steppe', 'terrain-forge', 'fishy', 'chronicle', 'ogun'];
       const loader = printLoader('fetching recent commits...');
       try {
         const results = await Promise.all(repos.map(repo =>
