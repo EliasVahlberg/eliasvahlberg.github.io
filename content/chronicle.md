@@ -7,14 +7,23 @@ let graph = Chronicle::from_directory("world/")?;
 let report = graph.validate();
 
 // Can this event have happened?
-graph.can_add(&Event {
-    id: "new_battle",
-    participants: vec![("brother_halix", Attacker)],
+let proposed = Event {
+    id: "new_battle".into(),
+    name: "New Battle".into(),
+    event_type: EventType::Battle,
     time_span: TimeSpan { start: 25, end: 25 },
-    ..
-})?;
+    location: None,
+    caused_by: vec![],
+    participants: vec![
+        Participant { actor: "brother_halix".into(), role: Role::Attacker, .. },
+    ],
+    state_changes: vec![],
+    description: String::new(),
+};
+graph.can_add_event(&proposed)?;
 // Err: actor 'brother_halix' has status Captured
-//      as of 'battle_of_broken_glass' (year 16)
+//      as of 'battle_of_broken_glass' (year 16),
+//      cannot participate in proposed event 'new_battle' (year 25)
 ```
 
 ## The problem
@@ -75,7 +84,7 @@ The query API is deliberately simple because the event metadata does the heavy l
 - **serde + ron** — hand-authorable structured content format
 - **thiserror** — error types
 
-No async, no database, no network, no GPU. ~1,100 lines of Rust.
+No async, no database, no network, no GPU. ~1,400 lines of Rust.
 
 ## Where it's going
 
