@@ -84,10 +84,10 @@ The query API is deliberately simple because the event metadata does the heavy l
 - **serde + ron** — hand-authorable structured content format
 - **thiserror** — error types
 
-No async, no database, no network, no GPU. ~1,400 lines of Rust.
+No async, no database, no network, no GPU. ~1,900 lines of Rust.
 
 ## Where it's going
 
 Chronicle is being built for [saltglass-steppe](/content/saltglass-steppe), a deterministic TUI roguelike with ~45 lore documents that are already showing consistency drift. The near-term goal is validation and querying. The longer-term idea: procedurally generate the *skeleton* of a narrative graph (events, participants, causal chains, temporal ordering, sentiment tags) and use chronicle's constraint checker to guarantee consistency by construction. The graph becomes the outline; prose generation becomes a constrained fill-in task.
 
-**Links:** [GitHub](https://github.com/EliasVahlberg/chronicle)
+**Links:** [GitHub](https://github.com/EliasVahlberg/chronicle) · [crates.io](https://crates.io/crates/chronicle-graph) · [docs.rs](https://docs.rs/chronicle-graph)
